@@ -68,6 +68,8 @@ def mainDisplay():
                 if end_button.rect.collidepoint(event.pos):
                     print("Button clicked!")
                     status = False  # Exit the loop when the button is clicked
+                if rule_button.rect.collidepoint(event.pos):
+                    print("Rules:")
 
         screen.fill((0, 0, 0))
         display_text('Herstory', mfont, (255, 255, 255), screen, 490, 200)
