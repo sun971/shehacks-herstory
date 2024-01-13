@@ -45,9 +45,9 @@ rule_img = pygame.image.load("rule_button.png").convert_alpha()
 rule_img = pygame.transform.scale(rule_img, (400,200))
 
 # Position of the button
-start_button = Button(450, 300, start_img, 1)
-end_button = Button(450, 400, end_img, 1)
-rule_button = Button(450,300, rule_img,1)
+start_button = Button(440, 250, start_img, 1)
+end_button = Button(440, 350, end_img, 1)
+rule_button = Button(440,500, rule_img,1)
 
 def display_text(txt, font, colour, screen, xpos, ypos):
     text = font.render(txt, True, colour)
@@ -72,7 +72,7 @@ def mainDisplay():
                     print("Rules:")
 
         screen.fill((0, 0, 0))
-        display_text('Herstory', mfont, (255, 255, 255), screen, 490, 200)
+        display_text('Herstory', mfont, (255, 255, 255), screen, 490, 150)
 
         # Draw the button
         start_button.draw(screen)
