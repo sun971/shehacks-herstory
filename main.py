@@ -78,6 +78,51 @@ def mainDisplay():
 def startGame():
     print("hello")
 
+    game_screen = pygame.display.set_mode((1280, 720))
+    background_img = pygame.image.load("classroom.jpeg").convert()
+    background_img = pygame.transform.scale(background_img, (1280, 720))
+
+    font = pygame.font.SysFont(None, 36)
+
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            # Add other game-related event handling here
+
+        # Update game state and draw on the game screen
+        game_screen.blit(background_img, (0, 0))
+
+         # Create a white box surface
+        box_width, box_height = 1280, 200
+        box_surface = pygame.Surface((box_width, box_height))
+        box_surface.fill((255, 255, 255))
+        box_rect = box_surface.get_rect(topleft=(0, 600))
+
+        # Blit the white box onto the game screen
+        game_screen.blit(box_surface, box_rect)
+
+        # Create a text surface
+        text_surface = font.render("Welcome to HerStory! Your mission is to find the treasure chest at the end of the map <enter space>", True, (0, 0, 0))  # Black text on white background
+
+        # Center the text within the white box
+        text_rect = text_surface.get_rect(center=box_rect.center)
+
+        # Blit the text onto the game screen
+        game_screen.blit(text_surface, text_rect)
+
+        # Update game state and draw on the game screen
+        # Add your game elements drawing code here
+
+        pygame.display.flip()
+
+
+    pygame.quit()
+    sys.exit()
+    
+
 mainDisplay()
 pygame.quit()
 sys.exit()
