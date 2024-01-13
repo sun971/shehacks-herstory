@@ -34,7 +34,7 @@ icon = pygame.image.load('classroom.jpeg')
 pygame.display.set_icon(icon)
 
 # Fonts
-mfont = pygame.font.SysFont(None, 100)
+mfont = pygame.font.SysFont("georgia", 100)
 
 # Create button
 start_img = pygame.image.load("start.png").convert_alpha()
@@ -52,6 +52,7 @@ rule_button = Button(440,500, rule_img,1)
 def display_text(txt, font, colour, screen, xpos, ypos):
     text = font.render(txt, True, colour)
     screen.blit(text, (xpos, ypos))
+
 
 def mainDisplay():
     status = True
