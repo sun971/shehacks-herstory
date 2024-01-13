@@ -31,10 +31,13 @@ start_img = pygame.image.load("start.png").convert_alpha()
 start_img = pygame.transform.scale(start_img, (400, 200))
 end_img = pygame.image.load("end_button.png").convert_alpha()
 end_img = pygame.transform.scale(end_img, (400, 200))
+rule_img = pygame.image.load("rule_button.png").convert_alpha()
+rule_img = pygame.transform.scale(rule_img, (400,200))
 
 #position of the button
 start_button = Button(450, 300, start_img, 1)
 end_button = Button(450, 400, end_img, 1)
+rule_button = Button(450,300, rule_img,1)
 
 
 def mainDisplay():
@@ -50,6 +53,7 @@ def mainDisplay():
         # Draw the button
         start_button.draw(screen)
         end_button.draw(screen)
+        rule_button.draw(screen)
 
 
         pygame.display.update()
