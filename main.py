@@ -88,20 +88,35 @@ def startGame():
     background_img = pygame.image.load("classroom.jpeg").convert()
     background_img = pygame.transform.scale(background_img, (1280, 720))
 
+    #character 1 
+    main_avatar = pygame.image.load("avatar.png").convert()
+    main_avatar = pygame.transform.scale(main_avatar, (100, 400))
+
     font = pygame.font.SysFont(None, 36)
 
+
+    message_index = 0
+    messages = [
+        "Welcome to HerStory! Your mission is to find the treasure chest at the end of the map <enter space>",
+        "Here's your map. You have three task to complete in order to win."
+    ]
 
     running = True
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            # Add other game-related event handling here
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                message_index += 1
+                if message_index >= len(messages):
+                    running = False
+                if message_index==1:
+                    game_screen.blit(main_avatar, (0,0))
+                    
 
-        # Update game state and draw on the game screen
         game_screen.blit(background_img, (0, 0))
 
-         # Create a white box surface
+        # Create a white box surface
         box_width, box_height = 1280, 200
         box_surface = pygame.Surface((box_width, box_height))
         box_surface.fill((255, 255, 255))
@@ -111,16 +126,13 @@ def startGame():
         game_screen.blit(box_surface, box_rect)
 
         # Create a text surface
-        text_surface = font.render("Welcome to HerStory! Your mission is to find the treasure chest at the end of the map <enter space>", True, (0, 0, 0))  # Black text on white background
+        text_surface = font.render(messages[message_index], True, (0, 0, 0))  # Black text on white background
 
         # Center the text within the white box
         text_rect = text_surface.get_rect(center=box_rect.center)
 
         # Blit the text onto the game screen
         game_screen.blit(text_surface, text_rect)
-
-        # Update game state and draw on the game screen
-        # Add your game elements drawing code here
 
         pygame.display.flip()
 
