@@ -34,7 +34,7 @@ icon = pygame.image.load('classroom.jpeg')
 pygame.display.set_icon(icon)
 
 # Fonts
-mfont = pygame.font.SysFont('comicsansms', 100)
+mfont = pygame.font.SysFont('georgia', 100)
 #print(pygame.font.get_fonts())
 
 # Create button
@@ -54,6 +54,7 @@ def display_text(txt, font, colour, screen, xpos, ypos):
     text = font.render(txt, True, colour)
     screen.blit(text, (xpos, ypos))
 
+
 def mainDisplay():
     status = True
     while status:
@@ -69,8 +70,10 @@ def mainDisplay():
                 if end_button.rect.collidepoint(event.pos):
                     print("Button clicked!")
                     status = False  # Exit the loop when the button is clicked
+
                 if rule_button.rect.collidepoint(event.pos):
                     print("Rules:")
+        #draw_main_screen(screen)
 
        # screen.fill((0, 0, 0))
 
@@ -86,6 +89,16 @@ def mainDisplay():
 
         pygame.display.update()
 
+def draw_main_screen(screen):
+
+    background_img2 = pygame.image.load("schoolImage.png").convert()
+    background_img2 = pygame.transform.scale(background_img2, (1280, 720))
+    screen.blit(background_img2, (0, 0))
+    display_text('Herstory', mfont, (248, 131, 121), screen, 450, 100)
+    start_button.draw(screen)
+    end_button.draw(screen)
+    pygame.display.flip()
+
 def startGame():
     print("hello")
 
@@ -94,7 +107,7 @@ def startGame():
     background_img = pygame.transform.scale(background_img, (1280, 720))
 
     #character 1 
-    main_avatar = pygame.image.load("avatar.png").convert()
+    main_avatar = pygame.image.load("avatar.png").convert_alpha()
     main_avatar = pygame.transform.scale(main_avatar, (100, 400))
 
     font = pygame.font.SysFont(None, 36)
@@ -103,10 +116,12 @@ def startGame():
     message_index = 0
     messages = [
         "Welcome to HerStory! Your mission is to find the treasure chest at the end of the map <enter space>",
-        "Here's your map. You have three task to complete in order to win."
+        "Here's your map. You have three task to complete in order to win.",
+
     ]
 
     running = True
+    avatar_display = False # track if avatar is shown
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -116,8 +131,7 @@ def startGame():
                 if message_index >= len(messages):
                     running = False
                 if message_index==1:
-                    game_screen.blit(main_avatar, (0,0))
-                    
+                    avatar_display = True
 
         game_screen.blit(background_img, (0, 0))
 
@@ -139,6 +153,8 @@ def startGame():
         # Blit the text onto the game screen
         game_screen.blit(text_surface, text_rect)
 
+        if avatar_display:
+            game_screen.blit(main_avatar, (100,200))
         pygame.display.flip()
 
 
