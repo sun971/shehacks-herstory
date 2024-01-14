@@ -73,9 +73,6 @@ def mainDisplay():
 
                 if rule_button.rect.collidepoint(event.pos):
                     print("Rules:")
-        #draw_main_screen(screen)
-
-       # screen.fill((0, 0, 0))
 
             game_screen1 = pygame.display.set_mode((1280, 720))
             background_img2 = pygame.image.load("schoolImage.png").convert()
