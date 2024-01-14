@@ -34,21 +34,25 @@ icon = pygame.image.load('classroom.jpeg')
 pygame.display.set_icon(icon)
 
 # Fonts
-mfont = pygame.font.SysFont(None, 100)
+mfont = pygame.font.SysFont("georgia", 100)
 
 # Create button
 start_img = pygame.image.load("start.png").convert_alpha()
 start_img = pygame.transform.scale(start_img, (400, 200))
 end_img = pygame.image.load("end_button.png").convert_alpha()
 end_img = pygame.transform.scale(end_img, (400, 200))
+rule_img = pygame.image.load("rule_button.png").convert_alpha()
+rule_img = pygame.transform.scale(rule_img, (400,200))
 
 # Position of the button
-start_button = Button(450, 300, start_img, 1)
-end_button = Button(450, 400, end_img, 1)
+start_button = Button(440, 250, start_img, 1)
+end_button = Button(440, 350, end_img, 1)
+rule_button = Button(440,500, rule_img,1)
 
 def display_text(txt, font, colour, screen, xpos, ypos):
     text = font.render(txt, True, colour)
     screen.blit(text, (xpos, ypos))
+
 
 def mainDisplay():
     status = True
@@ -66,14 +70,17 @@ def mainDisplay():
                     print("Button clicked!")
                     status = False  # Exit the loop when the button is clicked
         
+                if rule_button.rect.collidepoint(event.pos):
+                    print("Rules:")
         draw_main_screen(screen)
 
         screen.fill((0, 0, 0))
-        display_text('Herstory', mfont, (255, 255, 255), screen, 490, 200)
+        display_text('Herstory', mfont, (255, 255, 255), screen, 490, 150)
 
         # Draw the button
         start_button.draw(screen)
         end_button.draw(screen)
+        rule_button.draw(screen)
 
         pygame.display.update()
 
