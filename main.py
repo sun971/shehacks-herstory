@@ -113,16 +113,22 @@ def startGame():
     main_avatar = pygame.image.load("avatar.png").convert_alpha()
     main_avatar = pygame.transform.scale(main_avatar, (100, 400))
 
+    #map 
+    map = pygame.image.load("map.png").convert_alpha()
+    map = pygame.transform.scale(map, (500, 700))
+
+
     font = pygame.font.SysFont(None, 36)
 
     message_index = 0
     messages = [
         "Welcome to HerStory! Your mission is to find the treasure chest at the end of the map <enter space>",
-        "Here's your map. You have three task to complete in order to win.",
+        "Here's your map. You have three tasks to complete in order to win.",
     ]
 
     running = True
     avatar_display = False # track if avatar is shown
+    map_display = False 
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -133,6 +139,7 @@ def startGame():
                     running = False
                 if message_index==1:
                     avatar_display = True
+                    map_display = True
 
         game_screen.blit(background_img, (0, 0))
 
@@ -154,8 +161,10 @@ def startGame():
         # Blit the text onto the game screen
         game_screen.blit(text_surface, text_rect)
 
-        if avatar_display:
+        if avatar_display and map_display:
             game_screen.blit(main_avatar, (100, 200))
+            game_screen.blit(map, (400, 0))
+
         pygame.display.flip()
 
     pygame.quit()
