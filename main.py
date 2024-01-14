@@ -65,6 +65,8 @@ def mainDisplay():
                 if end_button.rect.collidepoint(event.pos):
                     print("Button clicked!")
                     status = False  # Exit the loop when the button is clicked
+        
+        draw_main_screen(screen)
 
         screen.fill((0, 0, 0))
         display_text('Herstory', mfont, (255, 255, 255), screen, 490, 200)
@@ -75,6 +77,13 @@ def mainDisplay():
 
         pygame.display.update()
 
+def draw_main_screen(screen):
+    screen.fill((0, 0, 0))
+    display_text('Herstory', mfont, (255, 255, 255), screen, 490, 200)
+    start_button.draw(screen)
+    end_button.draw(screen)
+    pygame.display.flip()
+
 def startGame():
     print("hello")
 
@@ -83,7 +92,7 @@ def startGame():
     background_img = pygame.transform.scale(background_img, (1280, 720))
 
     #character 1 
-    main_avatar = pygame.image.load("avatar.png").convert()
+    main_avatar = pygame.image.load("avatar.png").convert_alpha()
     main_avatar = pygame.transform.scale(main_avatar, (100, 400))
 
     font = pygame.font.SysFont(None, 36)
@@ -96,6 +105,7 @@ def startGame():
     ]
 
     running = True
+    avatar_display = False # track if avatar is shown
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -105,8 +115,7 @@ def startGame():
                 if message_index >= len(messages):
                     running = False
                 if message_index==1:
-                    game_screen.blit(main_avatar, (0,0))
-                    
+                    avatar_display = True
 
         game_screen.blit(background_img, (0, 0))
 
@@ -128,6 +137,8 @@ def startGame():
         # Blit the text onto the game screen
         game_screen.blit(text_surface, text_rect)
 
+        if avatar_display:
+            game_screen.blit(main_avatar, (100,200))
         pygame.display.flip()
 
 
