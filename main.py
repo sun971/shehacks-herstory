@@ -109,9 +109,12 @@ def startGame():
     background_img = pygame.image.load("classroom.jpeg").convert()
     background_img = pygame.transform.scale(background_img, (1280, 720))
 
-    # character 1
+    # character 1 (Ada Lovelace - wrote first computer program algorithm)
     main_avatar = pygame.image.load("avatar.png").convert_alpha()
     main_avatar = pygame.transform.scale(main_avatar, (100, 400))
+    #character 2 (Tun Youyou - Chinese pharmacist who discovered arteminsen which is used to treat malaria)
+
+    #character 3 (Sally Ride - American women first women to travel to space)
 
     #map 
     map = pygame.image.load("map.png").convert_alpha()
