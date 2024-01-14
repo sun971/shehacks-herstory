@@ -99,7 +99,8 @@ def startGame():
     message_index = 0
     messages = [
         "Welcome to HerStory! Your mission is to find the treasure chest at the end of the map <enter space>",
-        "Here's your map. You have three task to complete in order to win."
+        "Here's your map. You have three task to complete in order to win.",
+        
     ]
 
     running = True
