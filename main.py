@@ -1,7 +1,6 @@
 import pygame
 import sys
 
-
 # Define the Button class
 class Button:
     def __init__(self, x, y, image, scale):
@@ -102,6 +101,26 @@ def draw_main_screen(screen):
     end_button.draw(screen)
     pygame.display.flip()
 
+
+def move_avatar(screen, avatar, start_pos, end_pos, task_1):
+    clock = pygame.time.Clock()
+    x, y = start_pos
+    target_x, target_y = end_pos
+    speed = 5  # Adjust the speed as needed
+    avatar_x = 100
+
+
+
+
+    while x < 600:
+        clock.tick(30)  # Limit the frame rate to 30 FPS
+
+        x += speed
+        # Define task_1 outside the startGame function
+        screen.blit(task_1, (0, 0))  # Draw the task background
+        screen.blit(avatar, (x, y))  # Draw the avatar at its new position
+        pygame.display.flip()
+
 def startGame():
     print("hello")
 
@@ -113,8 +132,11 @@ def startGame():
     main_avatar = pygame.image.load("avatar.png").convert_alpha()
     main_avatar = pygame.transform.scale(main_avatar, (100, 400))
     #character 2 (Tun Youyou - Chinese pharmacist who discovered arteminsen which is used to treat malaria)
-        #second_avatar = pygame.image.load("").convert_alpha()
-    #second_avatar = pygame.transform.scale(second_avatar, (100,400))
+    
+    task_1 = pygame.image.load("task1.png").convert_alpha()
+    task_1 = pygame.transform.scale(task_1, (1280, 720))
+    main_avatar_smaller = pygame.transform.scale(main_avatar, (100, 200))
+
     #character 3 (Sally Ride - American women first women to travel to space)
     #third_avatar = pygame.image.load("").convert_alpha()
     #third_avatar = pygame.transform.scale(third_avatar, (100,400))
@@ -130,13 +152,16 @@ def startGame():
     messages = [
         "Welcome to HerStory! Your mission is to find the treasure chest at the end of the map <enter space>",
         "Here's your map. You have three tasks to complete in order to win.",
-        "Your first task is to get over the bridge. You have three helpers. To learn more press space"
+        "Your first task is to get over the bridge. You have three helpers. To learn more about them press space",
+        "Opps, you need help! The bridge is broken."
     ]
 
     running = True
     avatar_display = False # track if avatar is shown
     map_display = False 
-    task_display = True
+    task_display = False
+    avatar_x = 100
+    avatar_moved = False
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -150,6 +175,7 @@ def startGame():
                     map_display = True
                 if message_index ==2:
                     task_display = True
+
 
         game_screen.blit(background_img, (0, 0))
 
@@ -174,6 +200,15 @@ def startGame():
         if avatar_display and map_display:
             game_screen.blit(main_avatar, (100, 200))
             game_screen.blit(map, (400, 0))
+
+        
+        if task_display: 
+            game_screen.blit(task_1, (0,0))
+            #TODO:add character to slide into the task_1 frame
+            move_avatar(game_screen, main_avatar_smaller, (400, 175), (0, 0), task_1)  # Slide avatar to new position  
+
+
+    
 
         pygame.display.flip()
 
