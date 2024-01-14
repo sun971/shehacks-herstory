@@ -57,6 +57,7 @@ def display_text(txt, font, colour, screen, xpos, ypos):
     screen.blit(text, (xpos, ypos))
 
 
+
 def mainDisplay():
     status = True
     while status:
@@ -75,6 +76,7 @@ def mainDisplay():
 
                 if rule_button.rect.collidepoint(event.pos):
                     print("Rules:")
+                    Rules()
 
             #screen = pygame.display.set_mode((1280, 720))
             background_img2 = pygame.image.load("schoolImage.png").convert()
@@ -109,10 +111,7 @@ def move_avatar(screen, avatar, start_pos, end_pos, task_1):
     speed = 5  # Adjust the speed as needed
     avatar_x = 100
 
-
-
-
-    while x < 600:
+    while x < target_x:
         clock.tick(30)  # Limit the frame rate to 30 FPS
 
         x += speed
@@ -141,6 +140,16 @@ def startGame():
     #third_avatar = pygame.image.load("").convert_alpha()
     #third_avatar = pygame.transform.scale(third_avatar, (100,400))
 
+    #add all 3 parts 
+    part_1 = pygame.image.load("Part1.png").convert_alpha()
+    part_1 = pygame.transform.scale(part_1, (1280, 720))
+
+    part_2= pygame.image.load("Part2.png").convert_alpha()
+    part_2 = pygame.transform.scale(part_2, (1280, 720))
+    
+    part_3 = pygame.image.load("Part3.png").convert_alpha()
+    part_3 = pygame.transform.scale(part_3, (1280, 720))
+
     #map 
     map = pygame.image.load("map.png").convert_alpha()
     map = pygame.transform.scale(map, (500, 700))
@@ -152,16 +161,19 @@ def startGame():
     messages = [
         "Welcome to HerStory! Your mission is to find the treasure chest at the end of the map <enter space>",
         "Here's your map. You have three tasks to complete in order to win.",
-        "Your first task is to get over the bridge. You have three helpers. To learn more about them press space",
-        "Opps, you need help! The bridge is broken."
+        "part1",
+        "part2",
+        "part3",
+        "part3",
+        "part3"
     ]
 
     running = True
     avatar_display = False # track if avatar is shown
     map_display = False 
     task_display = False
-    avatar_x = 100
-    avatar_moved = False
+    part_1_display = False
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -175,6 +187,8 @@ def startGame():
                     map_display = True
                 if message_index ==2:
                     task_display = True
+                if message_index ==3:
+                    part_1_display = True
 
 
         game_screen.blit(background_img, (0, 0))
@@ -201,20 +215,52 @@ def startGame():
             game_screen.blit(main_avatar, (100, 200))
             game_screen.blit(map, (400, 0))
 
-        
         if task_display: 
             game_screen.blit(task_1, (0,0))
             #TODO:add character to slide into the task_1 frame
             move_avatar(game_screen, main_avatar_smaller, (400, 175), (0, 0), task_1)  # Slide avatar to new position  
 
-
-    
+        if part_1_display: 
+            game_screen.blit(part_1, (0,0))
+        
 
         pygame.display.flip()
 
     pygame.quit()
     sys.exit()
 
+
+
+def Rules():
+    pygame.init()
+    game_screen = pygame.display.set_mode((1280, 720))
+    background_img = pygame.image.load("Rules3.png").convert()
+    background_img = pygame.transform.scale(background_img, (1280,
+    720))
+
+    button_rect = pygame.Rect(1014, 640, 200, 50) 
+    # Font setup
+    font = pygame.font.Font(None, 36)
+    text = font.render('START', True, (0, 0, 0))
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONUP:
+                if button_rect.collidepoint(event.pos):
+                    startGame()
+
+        game_screen.blit(background_img, (0, 0))
+        # Draw the button
+        pygame.draw.rect(game_screen, (172, 215, 233),
+
+        button_rect) # Green button color
+
+        game_screen.blit(text, (button_rect.x + 10, button_rect.y + 10)) 
+        pygame.display.flip()
+
+        #pygame.display.update()
 mainDisplay()
 pygame.quit()
 sys.exit()
