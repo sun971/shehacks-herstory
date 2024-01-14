@@ -77,10 +77,11 @@ def mainDisplay():
 
        # screen.fill((0, 0, 0))
 
-        background_img2 = pygame.image.load("schoolImage.png").convert()
-        background_img2 = pygame.transform.scale(background_img2, (1280, 720))
-        screen.blit(background_img2, (0, 0))
-        display_text('Herstory', mfont, (248, 131, 121), screen, 450, 100)
+            game_screen1 = pygame.display.set_mode((1280, 720))
+            background_img2 = pygame.image.load("schoolImage.png").convert()
+            background_img2 = pygame.transform.scale(background_img2, (1280, 720))
+            game_screen1.blit(background_img2, (0, 0))
+            display_text('Herstory', mfont, (248, 131, 121), screen, 450, 100)
 
         # Draw the button
         start_button.draw(screen)
@@ -91,9 +92,12 @@ def mainDisplay():
 
 def draw_main_screen(screen):
 
+
+    game_screen1 = pygame.display.set_mode((1280, 720))
     background_img2 = pygame.image.load("schoolImage.png").convert()
     background_img2 = pygame.transform.scale(background_img2, (1280, 720))
-    screen.blit(background_img2, (0, 0))
+    game_screen1.blit(background_img2, (0, 0))
+
     display_text('Herstory', mfont, (248, 131, 121), screen, 450, 100)
     start_button.draw(screen)
     end_button.draw(screen)
