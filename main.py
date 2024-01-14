@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+
 # Define the Button class
 class Button:
     def __init__(self, x, y, image, scale):
@@ -24,6 +25,7 @@ class Button:
 
         return action
 
+
 # Initialize Pygame
 pygame.init()
 
@@ -35,7 +37,7 @@ pygame.display.set_icon(icon)
 
 # Fonts
 mfont = pygame.font.SysFont('georgia', 100)
-#print(pygame.font.get_fonts())
+# print(pygame.font.get_fonts())
 
 # Create button
 start_img = pygame.image.load("start.png").convert_alpha()
@@ -49,6 +51,7 @@ rule_img = pygame.transform.scale(rule_img, (160, 160))
 start_button = Button(560, 210, start_img, 1)
 end_button = Button(560, 310, end_img, 1)
 rule_button = Button(560, 460, rule_img, 1)
+
 
 def display_text(txt, font, colour, screen, xpos, ypos):
     text = font.render(txt, True, colour)
@@ -74,26 +77,25 @@ def mainDisplay():
                 if rule_button.rect.collidepoint(event.pos):
                     print("Rules:")
 
-            game_screen1 = pygame.display.set_mode((1280, 720))
+            #screen = pygame.display.set_mode((1280, 720))
             background_img2 = pygame.image.load("schoolImage.png").convert()
             background_img2 = pygame.transform.scale(background_img2, (1280, 720))
-            game_screen1.blit(background_img2, (0, 0))
+            screen.blit(background_img2, (0, 0))
             display_text('Herstory', mfont, (248, 131, 121), screen, 450, 100)
 
-        # Draw the button
-        start_button.draw(screen)
-        end_button.draw(screen)
-        rule_button.draw(screen)
+            # Draw the button
+            start_button.draw(screen)
+            end_button.draw(screen)
+            rule_button.draw(screen)
 
         pygame.display.update()
 
 def draw_main_screen(screen):
 
-
-    game_screen1 = pygame.display.set_mode((1280, 720))
+    #game_screen1 = pygame.display.set_mode((1280, 720))
     background_img2 = pygame.image.load("schoolImage.png").convert()
     background_img2 = pygame.transform.scale(background_img2, (1280, 720))
-    game_screen1.blit(background_img2, (0, 0))
+    screen.blit(background_img2, (0, 0))
 
     display_text('Herstory', mfont, (248, 131, 121), screen, 450, 100)
     start_button.draw(screen)
@@ -107,18 +109,16 @@ def startGame():
     background_img = pygame.image.load("classroom.jpeg").convert()
     background_img = pygame.transform.scale(background_img, (1280, 720))
 
-    #character 1 
+    # character 1
     main_avatar = pygame.image.load("avatar.png").convert_alpha()
     main_avatar = pygame.transform.scale(main_avatar, (100, 400))
 
     font = pygame.font.SysFont(None, 36)
 
-
     message_index = 0
     messages = [
         "Welcome to HerStory! Your mission is to find the treasure chest at the end of the map <enter space>",
         "Here's your map. You have three task to complete in order to win.",
-
     ]
 
     running = True
@@ -155,13 +155,11 @@ def startGame():
         game_screen.blit(text_surface, text_rect)
 
         if avatar_display:
-            game_screen.blit(main_avatar, (100,200))
+            game_screen.blit(main_avatar, (100, 200))
         pygame.display.flip()
-
 
     pygame.quit()
     sys.exit()
-    
 
 mainDisplay()
 pygame.quit()
