@@ -113,8 +113,11 @@ def startGame():
     main_avatar = pygame.image.load("avatar.png").convert_alpha()
     main_avatar = pygame.transform.scale(main_avatar, (100, 400))
     #character 2 (Tun Youyou - Chinese pharmacist who discovered arteminsen which is used to treat malaria)
-
+    #second_avatar = pygame.image.load("").convert_alpha()
+    #second_avatar = pygame.transform.scale(second_avatar, (100,400))
     #character 3 (Sally Ride - American women first women to travel to space)
+    #third_avatar = pygame.image.load("").convert_alpha()
+    #third_avatar = pygame.transform.scale(third_avatar, (100,400))
 
     #map 
     map = pygame.image.load("map.png").convert_alpha()
