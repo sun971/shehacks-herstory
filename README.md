@@ -13,13 +13,13 @@ Our current version of the game starts out with the player being introducted to 
 HerStory was developed using Python, and for game specific functionalities we utilized pygame. Piskel and avatarsinpixels were used to create our graphical designs. 
 
 ## Challenges we ran into
-
+We intially ran into some issues with Github pulling and merging due to lack of clarity about how github works, which set our progress back in some portions of our game. Another problem we ran into were bug issues and glitches that we needed to fix in our graphics, which was made more difficult by the fact none of us were familiar with pygame. Much research, discussion, and debugging was needed to work through these glitches. 
 
 ## What we are proud of
 With SheHacks being half of our groups first hackathon, we feel proud of the fact we were able to work harmoniously to plan, develop and implement an idea we all passionate and proud of. As well, it was all of our first experiences with game development, so we feel accomplished in what we were able to achieve with limited knowledge. As strangers coming into this experience, 
 
 ## What we learned
-As none of us have 
+We learned how to utilize pygame to handle our graphics and interactions, as well as all developed a better understanding of the ins and outs of Github. We also learned the importance of adaptability and time management as we had originally planned for the implementation of much more, and quickly had to adjust once we realized it was not completely doable within the time constraints. 
 
 
 ## What's Next
