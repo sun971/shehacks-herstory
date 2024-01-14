@@ -34,20 +34,21 @@ icon = pygame.image.load('classroom.jpeg')
 pygame.display.set_icon(icon)
 
 # Fonts
-mfont = pygame.font.SysFont(None, 100)
+mfont = pygame.font.SysFont('comicsansms', 100)
+#print(pygame.font.get_fonts())
 
 # Create button
 start_img = pygame.image.load("start.png").convert_alpha()
-start_img = pygame.transform.scale(start_img, (400, 200))
+start_img = pygame.transform.scale(start_img, (160, 160))
 end_img = pygame.image.load("end_button.png").convert_alpha()
-end_img = pygame.transform.scale(end_img, (400, 200))
+end_img = pygame.transform.scale(end_img, (160, 160))
 rule_img = pygame.image.load("rule_button.png").convert_alpha()
-rule_img = pygame.transform.scale(rule_img, (400,200))
+rule_img = pygame.transform.scale(rule_img, (160, 160))
 
 # Position of the button
-start_button = Button(440, 250, start_img, 1)
-end_button = Button(440, 350, end_img, 1)
-rule_button = Button(440,500, rule_img,1)
+start_button = Button(560, 210, start_img, 1)
+end_button = Button(560, 310, end_img, 1)
+rule_button = Button(560, 460, rule_img, 1)
 
 def display_text(txt, font, colour, screen, xpos, ypos):
     text = font.render(txt, True, colour)
@@ -71,8 +72,12 @@ def mainDisplay():
                 if rule_button.rect.collidepoint(event.pos):
                     print("Rules:")
 
-        screen.fill((0, 0, 0))
-        display_text('Herstory', mfont, (255, 255, 255), screen, 490, 150)
+       # screen.fill((0, 0, 0))
+
+        background_img2 = pygame.image.load("schoolImage.png").convert()
+        background_img2 = pygame.transform.scale(background_img2, (1280, 720))
+        screen.blit(background_img2, (0, 0))
+        display_text('Herstory', mfont, (248, 131, 121), screen, 450, 100)
 
         # Draw the button
         start_button.draw(screen)
