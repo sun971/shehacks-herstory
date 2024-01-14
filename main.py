@@ -104,21 +104,36 @@ def draw_main_screen(screen):
     pygame.display.flip()
 
 
-def move_avatar(screen, avatar, start_pos, end_pos, task_1):
-    clock = pygame.time.Clock()
-    x, y = start_pos
-    target_x, target_y = end_pos
-    speed = 5  # Adjust the speed as needed
-    avatar_x = 100
+# def move_avatar(screen, avatar, start_pos, end_pos, task_1):
+#     clock = pygame.time.Clock()
+#     x, y = start_pos
+#     target_x, target_y = end_pos
+#     speed = 5  # Adjust the speed as needed
+#     avatar_x = 100
 
-    while x < target_x:
-        clock.tick(30)  # Limit the frame rate to 30 FPS
+#     while x < target_x:
+#         clock.tick(30)  # Limit the frame rate to 30 FPS
 
-        x += speed
-        # Define task_1 outside the startGame function
-        screen.blit(task_1, (0, 0))  # Draw the task background
-        screen.blit(avatar, (x, y))  # Draw the avatar at its new position
-        pygame.display.flip()
+#         x += speed
+#         # Define task_1 outside the startGame function
+#         screen.blit(task_1, (0, 0))  # Draw the task background
+#         screen.blit(avatar, (x, y))  # Draw the avatar at its new position
+#         pygame.display.flip()
+
+
+# def move_avatar(screen, avatar, start_pos, end_pos, task_1):
+#     clock = pygame.time.Clock()
+#     x, y = start_pos
+#     target_x, target_y = end_pos
+#     speed = 5  # Adjust the speed as needed
+
+#     for _ in range(3):  # Move in three steps
+#         x += speed
+#         screen.blit(task_1, (0, 0))  # Draw the task background
+#         screen.blit(avatar, (x, y))  # Draw the avatar at its new position
+#         pygame.display.flip()
+#         clock.tick(10)  # Limit the frame rate to 10 FPS
+
 
 def startGame():
     print("hello")
@@ -149,7 +164,12 @@ def startGame():
     
     part_3 = pygame.image.load("Part3.png").convert_alpha()
     part_3 = pygame.transform.scale(part_3, (1280, 720))
+      
+    part1_a = pygame.image.load("Part1_a.png").convert_alpha()
+    part1_a = pygame.transform.scale(part1_a, (1280, 720))
 
+    part1_b = pygame.image.load("Part1_b.png").convert_alpha()
+    part1_b = pygame.transform.scale(part1_b, (1280, 720))
     #map 
     map = pygame.image.load("map.png").convert_alpha()
     map = pygame.transform.scale(map, (500, 700))
@@ -162,6 +182,8 @@ def startGame():
         "Welcome to HerStory! Your mission is to find the treasure chest at the end of the map <enter space>",
         "Here's your map. You have three tasks to complete in order to win.",
         "part1",
+        "task_d1",
+        "task_d2",
         "part2",
         "part3",
         "part3",
@@ -172,7 +194,13 @@ def startGame():
     avatar_display = False # track if avatar is shown
     map_display = False 
     task_display = False
+    task_display_a = False
+    task_display_b = False
+
+
     part_1_display = False
+    part_2_display = False
+    part_3_display = False
 
     while running:
         for event in pygame.event.get():
@@ -187,8 +215,22 @@ def startGame():
                     map_display = True
                 if message_index ==2:
                     task_display = True
+                
                 if message_index ==3:
+                    task_display_a = True
+                if message_index ==4:
+                    task_display_b = True
+                
+                if message_index ==5:
                     part_1_display = True
+                if message_index ==6:
+                    part_3_display = True
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_a:
+                part_2_display = True
+
+    # Rest of the code remains unchanged...
+
+
 
 
         game_screen.blit(background_img, (0, 0))
@@ -218,10 +260,21 @@ def startGame():
         if task_display: 
             game_screen.blit(task_1, (0,0))
             #TODO:add character to slide into the task_1 frame
-            move_avatar(game_screen, main_avatar_smaller, (400, 175), (0, 0), task_1)  # Slide avatar to new position  
+        
+        if task_display_a: 
+            game_screen.blit(part1_a, (0,0))
+        
+        if task_display_b:
+            game_screen.blit(part1_b, (0,0))
 
         if part_1_display: 
             game_screen.blit(part_1, (0,0))
+        
+        if part_2_display: 
+            game_screen.blit(part_2, (0,0))
+        
+        if part_3_display: 
+            game_screen.blit(part_3, (0,0))
         
 
         pygame.display.flip()
