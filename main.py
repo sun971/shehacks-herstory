@@ -72,7 +72,7 @@ def mainDisplay():
         
                 if rule_button.rect.collidepoint(event.pos):
                     print("Rules:")
-        draw_main_screen(screen)
+        #draw_main_screen(screen)
 
         screen.fill((0, 0, 0))
         display_text('Herstory', mfont, (255, 255, 255), screen, 490, 150)
