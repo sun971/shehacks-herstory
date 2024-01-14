@@ -113,7 +113,7 @@ def startGame():
     main_avatar = pygame.image.load("avatar.png").convert_alpha()
     main_avatar = pygame.transform.scale(main_avatar, (100, 400))
     #character 2 (Tun Youyou - Chinese pharmacist who discovered arteminsen which is used to treat malaria)
-
+    
     #character 3 (Sally Ride - American women first women to travel to space)
 
     #map 
@@ -127,11 +127,13 @@ def startGame():
     messages = [
         "Welcome to HerStory! Your mission is to find the treasure chest at the end of the map <enter space>",
         "Here's your map. You have three tasks to complete in order to win.",
+        "Your first task is to get over the bridge. You have three helpers. To learn more press space"
     ]
 
     running = True
     avatar_display = False # track if avatar is shown
     map_display = False 
+    task_display = True
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -143,6 +145,8 @@ def startGame():
                 if message_index==1:
                     avatar_display = True
                     map_display = True
+                if message_index ==2:
+                    task_display = True
 
         game_screen.blit(background_img, (0, 0))
 
